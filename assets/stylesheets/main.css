@@ -1,0 +1,282 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+	font-family: Poppins, sans-serif, serif;
+}
+
+/* Variables */
+:root {
+	/* Base (dark) theme variables */
+	--primary-color: #3aa6ee;
+	--accent-hover-color: #0764a1;
+	--accent-color: #f4f4f4;
+	--secondary-color: #049bd6f5;
+	--bg-color: rgb(3, 3, 19); /* main content background */
+	--page-bg: rgb(236, 238, 238); /* page background around content */
+	--text-color: #f4f4f4; /* main text color in dark theme */
+	--text-on-primary: #ffffff; /* text color used on colored buttons */
+	--font-weight-600: 600;
+}
+
+/* Light-theme overrides */
+body.light-theme {
+	--primary-color: #1a73e8;
+	--accent-hover-color: #165fbe;
+	--accent-color: #ffffff;
+	--secondary-color: #e6eefc;
+	--bg-color: #ffffff;
+	--page-bg: #f4f6f8;
+	--text-color: #111827;
+	--text-on-primary: #ffffff;
+}
+
+/* Global Styles */
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: var(--page-bg);
+}
+
+main {
+	flex-grow: 1;
+	background: var(--bg-color);
+}
+
+.container {
+	width: 90%;
+	margin: 0 auto;
+}
+
+/*====================================
+			Header styles
+====================================*/
+header {
+	background-color: var(--primary-color);
+	color: var(--text-on-primary);
+	padding: 1rem 0;
+}
+
+header > .header-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+header > .header-container > .logo > a {
+	font-size: 2rem;
+	font-weight: var(--font-weight-600);
+	text-transform: uppercase;
+	text-decoration: none;
+	cursor: pointer;
+	color: var(--text-on-primary);
+}
+
+header .theme-toggle {
+	cursor: pointer;
+	width: 2.5rem;
+	height: 2.5rem;
+	min-width: 1.8rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background-color: var(--accent-color);
+}
+
+header .theme-toggle > img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+/*====================================
+            Clock styles
+====================================*/
+
+.title {
+	text-align: center;
+	margin: 2.5rem 0;
+	font-size: clamp(1.7rem, 4vw, 3rem);
+	font-weight: var(--font-weight-600);
+	color: var(--text-color);
+}
+
+.stop-watch {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+	flex-flow: column wrap;
+	margin: 2rem 0;
+	color: var(--text-color);
+}
+
+.stop-watch .laps-display {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 2rem 0;
+}
+
+.stop-watch .laps-display .laps {
+	font-size: 1.5rem;
+	font-weight: var(--font-weight-600);
+	color: var(--text-color);
+}
+
+.stop-watch .laps-display .laps .lap-count {
+	font-size: 2.5rem;
+	font-family: 'Major Mono Display', 'Ranjdhani', 'Share Tech Mono',
+		sans-serif;
+	font-weight: 700;
+}
+
+.stop-watch .view-laps,
+.stop-watch .lap-btn,
+.stop-watch .trigger-buttons > button {
+	padding: clamp(0.5rem, 1.2vw, 1rem) clamp(1rem, 5vw, 2rem);
+	width: fit-content;
+	font-size: 1.2rem;
+	font-weight: var(--font-weight-600);
+	border: none;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	background-color: var(--secondary-color);
+}
+
+.stop-watch .view-laps {
+	color: var(--text-color);
+}
+
+.stop-watch .lap-btn {
+	background-color: var(--primary-color);
+	color: var(--text-on-primary);
+}
+
+.stop-watch .view-laps:hover,
+.stop-watch .lap-btn:hover,
+.stop-watch .trigger-buttons > button:hover {
+	background-color: var(--accent-hover-color);
+	color: var(--text-on-primary);
+	transform: scale(1.1);
+}
+
+/*====================================
+			Dialog styles
+====================================*/
+
+dialog.laps-dialog {
+	position: fixed;
+	border: none;
+	top: 40%;
+	left: 50%;
+	width: 50%;
+	min-width: 16rem;
+	height: fit-content;
+	min-height: 30vh;
+	max-height: 50vh;
+	overflow-y: auto;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	transform: translate(-50%, -50%);
+	background: var(--accent-color);
+	transition: all 0.3s ease-in-out;
+	z-index: 1;
+	font-size: 1.2rem;
+	text-align: center;
+}
+
+dialog::backdrop {
+	-webkit-backdrop-filter: blur(40px);
+	backdrop-filter: blur(40px);
+	background-color: rgba(0, 0, 0, 0.5);
+	transition: background-color 0.3s ease;
+}
+
+dialog.laps-dialog:focus {
+	outline: none;
+}
+
+dialog.laps-dialog > h2 {
+	text-align: center;
+	font-size: clamp(1.5rem, 4vw, 2.5rem);
+	margin-bottom: 1rem;
+	color: var(--primary-color);
+	padding: 0.5rem 0;
+	border-bottom: 1px solid var(--primary-color);
+}
+
+dialog.laps-dialog > .laps-list > li.lap-item {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 0.5rem 0;
+	padding: 0.5rem 0;
+}
+
+dialog.laps-dialog > .laps-list > li.lap-item:nth-child(even) {
+	background: rgba(192, 192, 192, 0.171);
+}
+
+.laps-dialog > .close-dialog-btn {
+	position: absolute;
+	top: 0;
+	right: 0.2rem;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: var(--primary-color);
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	padding: 1rem;
+	background-color: transparent;
+}
+
+.laps-dialog > .close-dialog-btn:hover {
+	transform: scale(1.1);
+	color: var(--accent-hover-color);
+}
+
+/* end of dialog styles */
+
+.stop-watch .timer-display {
+	font-size: clamp(3rem, 10vw, 10rem);
+	font-weight: var(--font-weight-600);
+	color: var(--text-color);
+}
+
+.stop-watch .timer-display .time {
+	background: url('../images/light-blue-background_476363-7560.jpg') no-repeat
+		center center/cover;
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	-webkit-text-fill-color: transparent;
+	margin: 2rem 0;
+	width: 100%;
+}
+
+.stop-watch .timer-display .time > span {
+	display: inline-block;
+	min-width: 2ch;
+}
+
+.stop-watch .trigger-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1.5rem;
+	margin-top: 1rem;
+}
+
+/*====================================
+			End of file
+====================================*/
