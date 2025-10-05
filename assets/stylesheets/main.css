@@ -180,10 +180,9 @@ dialog.laps-dialog {
 	width: 50%;
 	min-width: 16rem;
 	height: fit-content;
+	overflow-y: auto;
 	min-height: 30vh;
 	max-height: 50vh;
-	overflow-y: auto;
-	padding: 1rem;
 	border-radius: 0.5rem;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	transform: translate(-50%, -50%);
@@ -192,6 +191,7 @@ dialog.laps-dialog {
 	z-index: 1;
 	font-size: 1.2rem;
 	text-align: center;
+	scrollbar-width: none;
 }
 
 dialog::backdrop {
@@ -205,13 +205,21 @@ dialog.laps-dialog:focus {
 	outline: none;
 }
 
-dialog.laps-dialog > h2 {
+dialog.laps-dialog > .sticky-header {
+	position: sticky;
+	top: 0;
+	width: 100%;
+}
+
+dialog.laps-dialog > .laps-list {
+	list-style: none;
+	margin: 1rem 0;
+	padding: 0 1rem;
+}
+
+dialog.laps-dialog > .sticky-header > h2 {
 	text-align: center;
 	font-size: clamp(1.5rem, 4vw, 2.5rem);
-	margin-bottom: 1rem;
-	color: var(--primary-color);
-	padding: 0.5rem 0;
-	border-bottom: 1px solid var(--primary-color);
 }
 
 dialog.laps-dialog > .laps-list > li.lap-item {
@@ -226,13 +234,13 @@ dialog.laps-dialog > .laps-list > li.lap-item:nth-child(even) {
 	background: rgba(192, 192, 192, 0.171);
 }
 
-.laps-dialog > .close-dialog-btn {
+.laps-dialog .close-dialog-btn {
 	position: absolute;
 	top: 0;
 	right: 0.2rem;
 	font-size: 1.5rem;
 	font-weight: bold;
-	color: var(--primary-color);
+	color: var(--text-color);
 	border: none;
 	cursor: pointer;
 	transition: all 0.3s ease-in-out;
@@ -240,9 +248,9 @@ dialog.laps-dialog > .laps-list > li.lap-item:nth-child(even) {
 	background-color: transparent;
 }
 
-.laps-dialog > .close-dialog-btn:hover {
+.laps-dialog .close-dialog-btn:hover {
 	transform: scale(1.1);
-	color: var(--accent-hover-color);
+	color: var(--bg-color);
 }
 
 /* end of dialog styles */
@@ -275,6 +283,17 @@ dialog.laps-dialog > .laps-list > li.lap-item:nth-child(even) {
 	align-items: center;
 	gap: 1.5rem;
 	margin-top: 1rem;
+}
+
+/*====================================
+		Mobile responsiveness
+====================================*/
+@media (max-width: 600px) {
+	dialog.laps-dialog {
+		width: 85%;
+		min-width: 12rem;
+		min-height: 30vh;
+	}
 }
 
 /*====================================
