@@ -97,6 +97,19 @@ header .theme-toggle > img {
 }
 
 /*====================================
+			Footer styles
+====================================*/
+footer {
+	background-color: var(--primary-color);
+	color: var(--text-on-primary);
+	padding: 1rem 0;
+}
+
+footer > .container {
+	text-align: center;
+}
+
+/*====================================
             Clock styles
 ====================================*/
 
