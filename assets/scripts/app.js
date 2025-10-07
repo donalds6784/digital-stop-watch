@@ -106,7 +106,7 @@ const resetTimer = () => {
 	seconds.textContent = '00'
 	milliseconds.textContent = '00'
 	isTimerRunning = false
-	startBtn.textContent = 'Start'
+	lapCounter = 0
 
 	resetLaps()
 }
@@ -127,6 +127,15 @@ const lap = () => {
 }
 
 /*==========================================
+		Function to reset the laps
+==========================================*/
+
+const resetLaps = () => {
+	lapsList.innerHTML = ''
+	lapCount.textContent = `${lapCounter}`
+}
+
+/*==========================================
         Event listeners for the buttons
 ==========================================*/
 startBtn.addEventListener('click', () => {
@@ -144,15 +153,6 @@ lapBtn.addEventListener('click', () => {
 		lap()
 	}
 })
-
-/*==========================================
-		Function to reset the laps
-==========================================*/
-
-const resetLaps = () => {
-	lapsList.innerHTML = ''
-	lapCount.textContent = '0'
-}
 
 /*==========================================
 		Theme toggle

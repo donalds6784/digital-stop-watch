@@ -131,7 +131,7 @@ header .theme-toggle > img {
 }
 
 .stop-watch .laps-display .laps .lap-count {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	font-family: 'Major Mono Display', 'Ranjdhani', 'Share Tech Mono',
 		sans-serif;
 	font-weight: 700;
