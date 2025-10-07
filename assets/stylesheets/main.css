@@ -45,7 +45,7 @@ body {
 }
 
 main {
-	flex-grow: 1;
+	flex: 1;
 	background: var(--bg-color);
 }
 
